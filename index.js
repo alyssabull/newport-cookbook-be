@@ -18,6 +18,11 @@ const db = mysql.createPool(railwayURL);
 app.use(cors());
 app.use(express.json());
 
+app.get('/', async (req, res) => {
+    res.send("welcome to the server");
+    res.end();
+});
+
 app.get('/getmovies', async (req, res) => {
     const sqlGet = "SELECT * FROM `movie_reviews4`";
     const result = await db.query(sqlGet);
