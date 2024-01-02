@@ -9,12 +9,12 @@ const host = process.env.MYSQL_ADDON_HOST || "0.0.0.0";
 // const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
 // const db = mysql.createPool(cleverCloudURL);
 
-var db = mysql.createConnection({
-    host     : process.env.MYSQL_ADDON_HOST,
-    database : process.env.MYSQL_ADDON_DB,
-    user     : process.env.MYSQL_ADDON_USER,
-    password : process.env.MYSQL_ADDON_PASSWORD
-});
+// var db = mysql.createPool({
+//     host     : process.env.MYSQL_ADDON_HOST,
+//     database : process.env.MYSQL_ADDON_DB,
+//     user     : process.env.MYSQL_ADDON_USER,
+//     password : process.env.MYSQL_ADDON_PASSWORD
+// });
 
 app.use(cors());
 app.use(function (req, res, next) {
@@ -27,8 +27,8 @@ app.use(function (req, res, next) {
 app.use(express.json());
 
 app.get('/', async (req, res) => {
-    const result = await db.query('SELECT 1 + 1 AS solution');  
-    res.send(JSON.stringify(result))
+    // const result = await db.query('SELECT 1 + 1 AS solution');  
+    res.send("is this working")
     res.end();
 });
 
