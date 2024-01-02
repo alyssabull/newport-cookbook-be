@@ -24,11 +24,11 @@ app.get('/', async (req, res) => {
     res.end();
 });
 
-app.get('/getmovies', cors(), async (req, res) => {
+app.get('/getmovies', async (req, res) => {
     // const sqlGet = "SELECT * FROM `b32cy2ewfhbtxzwsgdpo`";
     // const result = await db.query(sqlGet);
     // res.send(JSON.stringify(result));
-    res.send({response: "hello world"});
+    res.send("hello world");
     res.end();
 });
 
