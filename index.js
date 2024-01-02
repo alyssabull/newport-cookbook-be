@@ -45,5 +45,5 @@ app.get('/getmovies', async (req, res) => {
 });
 
 app.listen(port, host, function () {
-    console.log(`listening on port: ${port} and on host: ${host}`)
+    console.log(`listening on port: ${port}`)
 });
