@@ -6,15 +6,15 @@ const app = express();
 
 const port = process.env.MYSQL_ADDON_PORT || 8080;
 const host = process.env.MYSQL_ADDON_HOST || "0.0.0.0";
-const cleverCloudURL = `mysql://ucteejf6fhc99kid:wP9AkhXF1s4yJvjdDlw1@bmhbj4bbflyzvts9aiva-mysql.services.clever-cloud.com:3306/bmhbj4bbflyzvts9aiva`;
-const db = mysql.createPool(cleverCloudURL);
+// const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
+// const db = mysql.createPool(cleverCloudURL);
 
-// var db = mysql.createConnection({
-//     host     : process.env.MYSQL_ADDON_HOST,
-//     database : process.env.MYSQL_ADDON_DB,
-//     user     : process.env.MYSQL_ADDON_USER,
-//     password : process.env.MYSQL_ADDON_PASSWORD
-// });
+var db = mysql.createConnection({
+    host     : process.env.MYSQL_ADDON_HOST,
+    database : process.env.MYSQL_ADDON_DB,
+    user     : process.env.MYSQL_ADDON_USER,
+    password : process.env.MYSQL_ADDON_PASSWORD
+});
 
 app.use(cors());
 app.use(function (req, res, next) {
@@ -28,8 +28,7 @@ app.use(express.json());
 
 app.get('/', async (req, res) => {
     await db.query('SELECT 1 + 1 AS solution', async (err, rows, fields) => {
-        if (err) throw err;
-      
+
         await res.send('The solution is: ', rows[0].solution);
     });  
     res.send("this is the server saying helloooooo")
