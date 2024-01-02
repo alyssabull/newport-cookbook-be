@@ -6,12 +6,14 @@ const app = express();
 
 const port = process.env.MYSQLPORT || 3001;
 const railwayURL = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`;
-const db = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "password",
-    database: "testschema"
-})
+const db = mysql.createPool(railwayURL);
+
+// const db = mysql.createPool({
+//     host: "localhost",
+//     user: "root",
+//     password: "password",
+//     database: "testschema"
+// })
 
 app.use(cors());
 app.use(express.json());
