@@ -4,8 +4,8 @@ const cors = require("cors");
 const env = require("dotenv").config();
 const app = express();
 
-// const port = process.env.MYSQL_ADDON_PORT || 8080;
-// const host = process.env.MYSQL_ADDON_HOST || "0.0.0.0";
+const port = process.env.MYSQL_ADDON_PORT || 8080;
+const host = process.env.MYSQL_ADDON_HOST || "0.0.0.0";
 // const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
 // const db = mysql.createPool(cleverCloudURL);
 
@@ -40,6 +40,6 @@ app.get('/getmovies', async (req, res) => {
     res.end();
 });
 
-// app.listen(port, host, function () {
-//     console.log(`listening on port: ${port} with host: ${host}`)
-// });
+app.listen(port, function () {
+    console.log(`listening on port: ${port}`)
+});
