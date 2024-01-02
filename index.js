@@ -4,8 +4,8 @@ const cors = require("cors");
 const env = require("dotenv").config();
 const app = express();
 
-// const port = process.env.DBPORT || 3001;
-// const host = process.env.DBHOST || "0.0.0.0";
+const port = process.env.DBPORT || 8080;
+const host = process.env.DBHOST || "0.0.0.0";
 const railwayURL = `mysql://ucxpdofnzajyujd8:4c7WqUFbmrYEnZQwSkW0@b32cy2ewfhbtxzwsgdpo-mysql.services.clever-cloud.com:3306/b32cy2ewfhbtxzwsgdpo`;
 const db = mysql.createPool(railwayURL);
 
@@ -24,6 +24,6 @@ app.get('/getmovies', async (req, res) => {
     res.end();
 });
 
-app.listen(3306, function () {
-    console.log(`running on port 3306`)
+app.listen(port, host, function () {
+    console.log(`running on port ${port}`)
 });
