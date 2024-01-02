@@ -27,11 +27,8 @@ app.use(function (req, res, next) {
 app.use(express.json());
 
 app.get('/', async (req, res) => {
-    await db.query('SELECT 1 + 1 AS solution', async (err, rows, fields) => {
-
-        await res.send('The solution is: ', rows[0].solution);
-    });  
-    res.send("this is the server saying helloooooo")
+    const result = await db.query('SELECT 1 + 1 AS solution');  
+    res.send(JSON.stringify(result))
     res.end();
 });
 
