@@ -28,7 +28,8 @@ app.get('/getmovies', async (req, res) => {
     // const sqlGet = "SELECT * FROM `b32cy2ewfhbtxzwsgdpo`";
     // const result = await db.query(sqlGet);
     // res.send(JSON.stringify(result));
-    res.send({resposne: "hello world"})
+    const result = {response: "hello world"};
+    res.send(JSON.stringify(result));
     res.end();
 });
 
