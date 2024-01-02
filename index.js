@@ -20,14 +20,15 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', async (req, res) => {
-    res.send("welcome to the server");
+    res.send("welcome to the server!");
     res.end();
 });
 
 app.get('/getmovies', async (req, res) => {
-    const sqlGet = "SELECT * FROM `b32cy2ewfhbtxzwsgdpo`";
-    const result = await db.query(sqlGet);
-    res.send(JSON.stringify(result));
+    // const sqlGet = "SELECT * FROM `b32cy2ewfhbtxzwsgdpo`";
+    // const result = await db.query(sqlGet);
+    // res.send(JSON.stringify(result));
+    res.send("hello world")
     res.end();
 });
 
