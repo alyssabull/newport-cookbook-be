@@ -40,6 +40,6 @@ const app = express();
 //     res.end();
 // });
 
-app.listen(3306, function () {
-    console.log(`listening on port 3306`)
+app.listen(8080, "0.0.0.0", function () {
+    console.log("server up")
 });
