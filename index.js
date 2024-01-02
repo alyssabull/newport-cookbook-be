@@ -5,6 +5,7 @@ const env = require("dotenv").config();
 const app = express();
 
 const port = process.env.DBPORT || 3001;
+const host = process.env.DBHOST || "0.0.0.0";
 const railwayURL = `mysql://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBHOST}:${process.env.DBPORT}/${process.env.DBDATABASE}`;
 const db = mysql.createPool(railwayURL);
 
@@ -23,6 +24,6 @@ app.get('/getmovies', async (req, res) => {
     res.end();
 });
 
-app.listen(port, "0.0.0.0", function () {
+app.listen(port, host, function () {
     console.log(`running on port ${port}`)
 });
