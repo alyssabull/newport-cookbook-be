@@ -27,12 +27,11 @@ app.use(function (req, res, next) {
 app.use(express.json());
 
 app.get('/', async (req, res) => {
-    db.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+    await db.query('SELECT 1 + 1 AS solution', async (err, rows, fields) => {
         if (err) throw err;
       
-        res.send('The solution is: ', rows[0].solution);
+        await res.send('The solution is: ', rows[0].solution);
     });  
-    ("welcome to the server!");
     res.end();
 });
 
