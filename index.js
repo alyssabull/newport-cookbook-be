@@ -6,15 +6,15 @@ const app = express();
 
 const port = process.env.MYSQL_ADDON_PORT || 8080;
 const host = process.env.MYSQL_ADDON_HOST || "0.0.0.0";
-// const railwayURL = `mysql://ucxpdofnzajyujd8:4c7WqUFbmrYEnZQwSkW0@b32cy2ewfhbtxzwsgdpo-mysql.services.clever-cloud.com:3306/b32cy2ewfhbtxzwsgdpo`;
-// const db = mysql.createPool(railwayURL);
+const cleverCloudURL = `mysql://ucxpdofnzajyujd8:4c7WqUFbmrYEnZQwSkW0@b32cy2ewfhbtxzwsgdpo-mysql.services.clever-cloud.com:3306/b32cy2ewfhbtxzwsgdpo`;
+const db = mysql.createPool(cleverCloudURL);
 
-var db = mysql.createConnection({
-    host     : process.env.MYSQL_ADDON_HOST,
-    database : process.env.MYSQL_ADDON_DB,
-    user     : process.env.MYSQL_ADDON_USER,
-    password : process.env.MYSQL_ADDON_PASSWORD
-});
+// var db = mysql.createConnection({
+//     host     : process.env.MYSQL_ADDON_HOST,
+//     database : process.env.MYSQL_ADDON_DB,
+//     user     : process.env.MYSQL_ADDON_USER,
+//     password : process.env.MYSQL_ADDON_PASSWORD
+// });
 
 app.use(cors());
 app.use(function (req, res, next) {
