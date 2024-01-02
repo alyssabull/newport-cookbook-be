@@ -24,7 +24,7 @@ app.get('/', async (req, res) => {
     res.end();
 });
 
-app.get('/getmovies', async (req, res) => {
+app.get('/getmovies', cors(), async (req, res) => {
     // const sqlGet = "SELECT * FROM `b32cy2ewfhbtxzwsgdpo`";
     // const result = await db.query(sqlGet);
     // res.send(JSON.stringify(result));
