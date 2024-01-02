@@ -23,6 +23,6 @@ app.get('/getmovies', async (req, res) => {
     res.end();
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", function () {
     console.log(`running on port ${port}`)
 });
