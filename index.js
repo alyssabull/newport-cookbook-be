@@ -4,8 +4,8 @@ const cors = require("cors");
 // const env = require("dotenv").config();
 const app = express();
 
-// const port = process.env.MYSQL_ADDON_PORT || 8080;
-// const host = process.env.MYSQL_ADDON_HOST || "0.0.0.0";
+const port = process.env.MYSQL_ADDON_PORT || 8080;
+const host = process.env.MYSQL_ADDON_HOST || "0.0.0.0";
 // const cleverCloudURL = `mysql://ucxpdofnzajyujd8:4c7WqUFbmrYEnZQwSkW0@b32cy2ewfhbtxzwsgdpo-mysql.services.clever-cloud.com:3306/b32cy2ewfhbtxzwsgdpo`;
 // const db = mysql.createPool(cleverCloudURL);
 
