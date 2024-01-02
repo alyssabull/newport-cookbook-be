@@ -27,7 +27,12 @@ app.use(function (req, res, next) {
 app.use(express.json());
 
 app.get('/', async (req, res) => {
-    res.send("welcome to the server!");
+    db.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+        if (err) throw err;
+      
+        res.send('The solution is: ', rows[0].solution);
+    });  
+    ("welcome to the server!");
     res.end();
 });
 
@@ -39,10 +44,6 @@ app.get('/getmovies', async (req, res) => {
     res.end();
 });
 
-app.listen(port, host, function () {
-    db.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-        if (err) throw err;
+// app.listen(port, host, function () {
       
-        console.log('The solution is: ', rows[0].solution);
-    });    
-});
+// });
