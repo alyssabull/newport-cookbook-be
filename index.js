@@ -40,6 +40,6 @@ app.get('/getmovies', async (req, res) => {
     res.end();
 });
 
-app.listen(8080, "0.0.0.0", () => {
-    console.log(`listening on port: ${port}`)
+app.listen(3306, function () {
+    console.log(`running on port 3306`)
 });
