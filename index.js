@@ -6,7 +6,7 @@ const app = express();
 
 const port = process.env.MYSQL_ADDON_PORT || 8080;
 const host = process.env.MYSQL_ADDON_HOST || "0.0.0.0";
-const cleverCloudURL = `mysql://ucxpdofnzajyujd8:4c7WqUFbmrYEnZQwSkW0@b32cy2ewfhbtxzwsgdpo-mysql.services.clever-cloud.com:3306/b32cy2ewfhbtxzwsgdpo`;
+const cleverCloudURL = `mysql://ucteejf6fhc99kid:wP9AkhXF1s4yJvjdDlw1@bmhbj4bbflyzvts9aiva-mysql.services.clever-cloud.com:3306/bmhbj4bbflyzvts9aiva`;
 const db = mysql.createPool(cleverCloudURL);
 
 // var db = mysql.createConnection({
