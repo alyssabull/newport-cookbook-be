@@ -23,8 +23,13 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization, Access-Control-Allow-Origin');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     next();
-  });
+});
 app.use(express.json());
+
+app.get('/', async (req, res) => {
+    res.send("testing");
+    res.end();
+});
 
 app.get('/getmovies', async (req, res) => {
     const result = await db.query('SELECT 1 + 1 AS solution');  
@@ -41,5 +46,5 @@ app.get('/getmovies', async (req, res) => {
 // });
 
 app.listen(8080, "0.0.0.0", function () {
-    console.log("server up")
+    console.log("server up");
 });
