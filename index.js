@@ -28,7 +28,7 @@ app.use(express.json());
 
 app.get('/', async (req, res) => {
     const result = await db.query('SELECT 1 + 1 AS solution');  
-    res.send(JSON.stringify(result));
+    res.send(result);
     res.end();
 });
 
