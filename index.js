@@ -7,8 +7,19 @@ const app = express();
 const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
 const db = mysql.createPool(cleverCloudURL);
 
-app.use(cors());
-app.options("*", cors());
+const whitelist = ["http://localhost:3000", "https://poetic-sable-dac553.netlify.app"]
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    }
+  },
+  credentials: true,
+};
+app.use(cors(corsOptions));
+// app.use(cors());
 // app.use(function (req, res, next) {
 //     res.setHeader('Access-Control-Allow-Origin', "https://poetic-sable-dac553.netlify.app");
 //     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
