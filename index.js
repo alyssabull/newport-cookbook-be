@@ -6,8 +6,8 @@ const app = express();
 
 // const port = process.env.MYSQL_ADDON_PORT || 8080;
 // const host = process.env.MYSQL_ADDON_HOST || "0.0.0.0";
-// const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
-// const db = mysql.createPool(cleverCloudURL);
+const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
+const db = mysql.createPool(cleverCloudURL);
 
 // var db = mysql.createPool({
 //     host     : process.env.MYSQL_ADDON_HOST,
@@ -27,8 +27,8 @@ const app = express();
 // app.use(express.json());
 
 app.get('/', async (req, res) => {
-    // const result = await db.query('SELECT 1 + 1 AS solution');  
-    res.send("is this working")
+    const result = await db.query('SELECT 1 + 1 AS solution');  
+    res.send(JSON.stringify(result));
     res.end();
 });
 
