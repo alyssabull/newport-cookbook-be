@@ -4,17 +4,8 @@ const cors = require("cors");
 const env = require("dotenv").config();
 const app = express();
 
-// const port = process.env.MYSQL_ADDON_PORT || 8080;
-// const host = process.env.MYSQL_ADDON_HOST || "0.0.0.0";
 const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
 const db = mysql.createPool(cleverCloudURL);
-
-// var db = mysql.createPool({
-//     host     : process.env.MYSQL_ADDON_HOST,
-//     database : process.env.MYSQL_ADDON_DB,
-//     user     : process.env.MYSQL_ADDON_USER,
-//     password : process.env.MYSQL_ADDON_PASSWORD
-// });
 
 app.use(cors());
 app.use(function (req, res, next) {
@@ -32,10 +23,10 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/getmovies', cors(), async (req, res) => {
-    const sqlGet = "SELECT 1 + 1 AS SOLUTION;";
-    const result = await db.query(sqlGet);
-    res.send(JSON.stringify(result));
-    // res.send({data: "hello world"});
+    // const sqlGet = "SELECT 1 + 1 AS SOLUTION;";
+    // const result = await db.query(sqlGet);
+    // res.send(JSON.stringify(result));
+    res.send({data: cleverCloudURL});
     res.end();
 });
 
