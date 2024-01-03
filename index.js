@@ -8,13 +8,14 @@ const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MY
 const db = mysql.createPool(cleverCloudURL);
 
 app.use(cors());
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', "https://poetic-sable-dac553.netlify.app");
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization, Access-Control-Allow-Origin');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    next();
-});
+app.options("*", cors());
+// app.use(function (req, res, next) {
+//     res.setHeader('Access-Control-Allow-Origin', "https://poetic-sable-dac553.netlify.app");
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization, Access-Control-Allow-Origin');
+//     res.setHeader('Access-Control-Allow-Credentials', 'true');
+//     next();
+// });
 app.use(express.json());
 
 app.get('/', async (req, res) => {
