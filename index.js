@@ -31,9 +31,8 @@ app.get('/', async (req, res) => {
     res.end();
 });
 
-app.get('/getmovies', async (req, res) => {
-    // const sqlGet = "SELECT * FROM `bzh9f8szz4sa4nts1m00`";
-    const sqlGet = "SELECT 1 + 1 AS SOLUTION";
+app.get('/getmovies', cors(), async (req, res) => {
+    const sqlGet = "SELECT 1 + 1 AS SOLUTION;";
     const result = await db.query(sqlGet);
     res.send(JSON.stringify(result));
     // res.send({data: "hello world"});
