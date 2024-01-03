@@ -15,7 +15,7 @@ var db = mysql.createConnection({
 });
 
 app.use(cors({
-    origin: "https://poetic-sable-dac553.netlify.app",
+    origin: ["https://poetic-sable-dac553.netlify.app", "https://newport-cookbook-be.cleverapps.io/"]
 }));
 // app.use(function (req, res, next) {
 //     res.setHeader('Access-Control-Allow-Origin', "https://poetic-sable-dac553.netlify.app");
