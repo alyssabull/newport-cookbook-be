@@ -23,10 +23,10 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/getmovies', async (req, res) => {
-    // const sqlGet = "SELECT 1 + 1 AS SOLUTION;";
-    // const result = await db.query(sqlGet);
-    // res.send(JSON.stringify(result));
-    res.send({data: cleverCloudURL});
+    const sqlGet = "SHOW DATABASES;";
+    const result = await db.query(sqlGet);
+    res.send(JSON.stringify(result));
+    // res.send({data: cleverCloudURL});
     res.end();
 });
 
