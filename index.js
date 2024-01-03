@@ -24,7 +24,7 @@ const db = mysql.createPool(cleverCloudURL);
 //     res.setHeader('Access-Control-Allow-Credentials', 'true');
 //     next();
 //   });
-// app.use(express.json());
+app.use(express.json());
 
 app.get('/', async (req, res) => {
     const result = await db.query('SELECT 1 + 1 AS solution');  
