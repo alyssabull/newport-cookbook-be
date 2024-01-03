@@ -14,14 +14,16 @@ var db = mysql.createConnection({
     password : process.env.MYSQL_ADDON_PASSWORD
 });
 
-app.use(cors());
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', "https://poetic-sable-dac553.netlify.app");
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization, Access-Control-Allow-Origin');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    next();
-});
+app.use(cors({
+    origin: "https://poetic-sable-dac553.netlify.app",
+}));
+// app.use(function (req, res, next) {
+//     res.setHeader('Access-Control-Allow-Origin', "https://poetic-sable-dac553.netlify.app");
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization, Access-Control-Allow-Origin');
+//     res.setHeader('Access-Control-Allow-Credentials', 'true');
+//     next();
+// });
 app.use(express.json());
 
 app.get('/', async (req, res) => {
