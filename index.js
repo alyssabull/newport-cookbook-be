@@ -1,6 +1,6 @@
 const express = require("express");
 const mysql = require("mysql");
-// const cors = require("cors");
+const cors = require("cors");
 const env = require("dotenv").config();
 const app = express();
 
@@ -16,14 +16,14 @@ const db = mysql.createPool(cleverCloudURL);
 //     password : process.env.MYSQL_ADDON_PASSWORD
 // });
 
-// app.use(cors());
-// app.use(function (req, res, next) {
-//     res.setHeader('Access-Control-Allow-Origin', "https://poetic-sable-dac553.netlify.app");
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization, Access-Control-Allow-Origin');
-//     res.setHeader('Access-Control-Allow-Credentials', 'true');
-//     next();
-//   });
+app.use(cors());
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', "https://poetic-sable-dac553.netlify.app");
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization, Access-Control-Allow-Origin');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    next();
+  });
 app.use(express.json());
 
 app.get('/getmovies', async (req, res) => {
