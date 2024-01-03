@@ -24,7 +24,7 @@ app.get('/getrecipes', async (req, res) => {
     res.end();
 });
 
-app.post('/post', async (req, res) => {
+app.post('/postnewrecipe', async (req, res) => {
     const sqlInsert = "INSERT INTO `bzh9f8szz4sa4nts1m00`.`all_recipes` (`id`, `dateAdded`, `title`, `description`, `details`, `instructions`, `picture`, `categories`, `isFavorite`, `notes`, `addedBy`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     db.query(sqlInsert, [req.body.dateAdded, req.body.title, req.body.description, req.body.details, req.body.instructions, req.body.picture, req.body.categories, req.body.isFavorite, req.body.notes, req.body.addedBy], async (err, result) => {
         if (err) throw err;
