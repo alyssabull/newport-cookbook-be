@@ -10,13 +10,6 @@ const db = mysql.createPool(cleverCloudURL);
 app.use(cors({
     origin: ["https://poetic-sable-dac553.netlify.app", "https://newport-cookbook-be.cleverapps.io/"]
 }));
-// app.use(function (req, res, next) {
-//     res.setHeader('Access-Control-Allow-Origin', "https://poetic-sable-dac553.netlify.app");
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
-//     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, authorization, Access-Control-Allow-Origin');
-//     res.setHeader('Access-Control-Allow-Credentials', 'true');
-//     next();
-// });
 app.use(express.json());
 
 app.get('/', async (req, res) => {
@@ -25,10 +18,9 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/getmovies', async (req, res) => {
-    const sqlGet = "SELECT * FROM bzh9f8szz4sa4nts1m00.Persons;";
+    const sqlGet = "SELECT * FROM bzh9f8szz4sa4nts1m00.all_recipes;";
     const result = await db.query(sqlGet);
     res.send(JSON.stringify(result));
-    // res.send({data: cleverCloudURL});
     res.end();
 });
 
