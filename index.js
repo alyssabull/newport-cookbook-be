@@ -32,10 +32,11 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/getmovies', async (req, res) => {
-    // const sqlGet = "SELECT * FROM `b32cy2ewfhbtxzwsgdpo`";
-    // const result = await db.query(sqlGet);
-    // res.send(JSON.stringify(result));
-    res.send({data: "hello world"});
+    // const sqlGet = "SELECT * FROM `bzh9f8szz4sa4nts1m00`";
+    const sqlGet = "SELECT 1 + 1 AS SOLUTION";
+    const result = await db.query(sqlGet);
+    res.send(JSON.stringify(result));
+    // res.send({data: "hello world"});
     res.end();
 });
 
