@@ -26,11 +26,11 @@ const app = express();
 //   });
 // app.use(express.json());
 
-// app.get('/', async (req, res) => {
-//     // const result = await db.query('SELECT 1 + 1 AS solution');  
-//     res.send("is this working")
-//     res.end();
-// });
+app.get('/', async (req, res) => {
+    // const result = await db.query('SELECT 1 + 1 AS solution');  
+    res.send("is this working")
+    res.end();
+});
 
 // app.get('/getmovies', async (req, res) => {
 //     // const sqlGet = "SELECT * FROM `b32cy2ewfhbtxzwsgdpo`";
