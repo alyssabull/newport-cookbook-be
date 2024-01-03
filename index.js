@@ -1,18 +1,11 @@
 const express = require("express");
-const mysql = require("mysql");
+const mysql = require("mysql2/promise");
 const cors = require("cors");
 const env = require("dotenv").config();
 const app = express();
 
-// const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
-// const db = mysql.createPool(cleverCloudURL);
-
-var db = mysql.createConnection({
-    host     : process.env.MYSQL_ADDON_HOST,
-    database : process.env.MYSQL_ADDON_DB,
-    user     : process.env.MYSQL_ADDON_USER,
-    password : process.env.MYSQL_ADDON_PASSWORD
-});
+const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
+const db = mysql.createPool(cleverCloudURL);
 
 app.use(cors({
     origin: ["https://poetic-sable-dac553.netlify.app", "https://newport-cookbook-be.cleverapps.io/"]
