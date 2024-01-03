@@ -25,7 +25,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/getmovies', async (req, res) => {
-    const sqlGet = "SHOW DATABASES;";
+    const sqlGet = "SELECT * FROM bzh9f8szz4sa4nts1m00.Persons;";
     const result = await db.query(sqlGet);
     res.send(JSON.stringify(result));
     // res.send({data: cleverCloudURL});
