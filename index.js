@@ -47,7 +47,7 @@ app.post('/postnewrecipe', async (req, res) => {
 
 app.post('/compressimage', async (req, res) => {
     const imageBuffer = fs.readFileSync(req.body.picture);
-    axios.post(apiUrl, imageBuffer, {
+    axios.post("api.tinify.com", imageBuffer, {
         headers: {
           'Content-Type': 'image/png',
           'Authorization': 'Basic ' + Buffer.from('api:' + `${TINY_PNG_API_KEY}`).toString('base64'),
