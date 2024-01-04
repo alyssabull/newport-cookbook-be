@@ -35,11 +35,12 @@ app.post('/postnewrecipe', async (req, res) => {
     }).then((response) => {
       const compressedData = response.data.output.buffer;
       const finalCompression = zlib.deflateSync(compressedData);
-      const sqlInsert = "INSERT INTO `bzh9f8szz4sa4nts1m00`.`all_recipes` (dateAdded, title, description, details, instructions, categories, isFavorite, notes, addedBy, picture) VALUES (?,?,?,?,?,?,?,?,?,?)";
-      db.query(sqlInsert, [req.body.dateAdded, req.body.title, req.body.description, req.body.details, req.body.instructions, req.body.categories, req.body.isFavorite, req.body.notes, req.body.addedBy, finalCompression], async (err, result) => {
-          if (err) res.send(err);
-          await res.send({data: "recipe post successful"});
-      });
+      res.send(finalCompression)
+    //   const sqlInsert = "INSERT INTO `bzh9f8szz4sa4nts1m00`.`all_recipes` (dateAdded, title, description, details, instructions, categories, isFavorite, notes, addedBy, picture) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    //   db.query(sqlInsert, [req.body.dateAdded, req.body.title, req.body.description, req.body.details, req.body.instructions, req.body.categories, req.body.isFavorite, req.body.notes, req.body.addedBy, finalCompression], async (err, result) => {
+    //       if (err) res.send(err);
+    //       await res.send({data: "recipe post successful"});
+    //   });
     });
     res.end(); 
 });
