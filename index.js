@@ -9,7 +9,7 @@ const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MY
 const db = mysql.createPool(cleverCloudURL);
 
 app.use(cors({
-    origin: ["http://localhost:3000", "https://newport-cookbook.netlify.app", "https://newport-cookbook-be.cleverapps.io"]
+    origin: ["http://localhost:3000", "https://newport-cookbook.netlify.app", "https://newport-cookbook-be.cleverapps.io", "https://api.tinify.com/shrink"]
 }));
 app.use(express.json());
 
