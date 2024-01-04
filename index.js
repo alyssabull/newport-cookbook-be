@@ -3,7 +3,7 @@ const mysql = require("mysql2/promise");
 const cors = require("cors");
 const env = require("dotenv").config();
 const app = express();
-const zlib = require("zlib");
+const axios = require("axios");
 
 const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
 const db = mysql.createPool(cleverCloudURL);
@@ -43,6 +43,25 @@ app.post('/postnewrecipe', async (req, res) => {
     //   });
     });
     res.end(); 
+});
+
+app.post('/compressimage', async (req, res) => {
+    const imageBuffer = fs.readFileSync(req.body.picture);
+    axios.post(apiUrl, imageBuffer, {
+        headers: {
+          'Content-Type': 'image/png',
+          'Authorization': 'Basic ' + Buffer.from('api:' + apiKey).toString('base64'),
+        },
+    }).then(response => {
+        // The compressed image data is available in response.data.output.buffer
+        const compressedData = response.data.output.buffer;
+    
+        // Save the compressed image to a new file or perform further actions
+        // fs.writeFileSync('path/to/your/compressed/image.png', compressedData);
+    
+        res.send(compressedData);
+    });
+    res.send();
 });
 
 app.delete('/deleterecipe/:id', async (req, res) => {
