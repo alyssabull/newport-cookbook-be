@@ -34,6 +34,16 @@ app.post('/postnewrecipe', async (req, res) => {
     res.end(); 
 });
 
+app.delete('/deleterecipe/:id', async (req, res) => {
+    const id = req.params.id;
+    const sqlInsert = "DELETE FROM `bzh9f8szz4sa4nts1m00`.`all_recipes` WHERE id = ?";
+    db.query(sqlInsert, [id], async (err, result) => {
+        if (err) throw err;
+        await res.send(result);
+    });
+    res.end();
+})
+
 app.listen(8080, "0.0.0.0", function () {
     console.log("server up");
 });
