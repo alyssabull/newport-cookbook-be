@@ -50,7 +50,7 @@ app.post('/compressimage', async (req, res) => {
     axios.post(apiUrl, imageBuffer, {
         headers: {
           'Content-Type': 'image/png',
-          'Authorization': 'Basic ' + Buffer.from('api:' + apiKey).toString('base64'),
+          'Authorization': 'Basic ' + Buffer.from('api:' + `${TINY_PNG_API_KEY}`).toString('base64'),
         },
     }).then(response => {
         // The compressed image data is available in response.data.output.buffer
