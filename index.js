@@ -14,6 +14,7 @@ app.use(cors({
     origin: ["http://localhost:3000", "https://newport-cookbook.netlify.app", "https://newport-cookbook-be.cleverapps.io", "https://api.tinify.com/shrink"]
 }));
 app.use(express.json());
+app.use(express.static('uploads'));
 
 app.get('/', async (req, res) => {
     res.send("server is working");
@@ -40,7 +41,7 @@ const upload = multer({
     storage: storage
 });
 
-app.post('/upload', upload.single('image'), async (req, res) => {
+app.post('/uploadimage', upload.single('image'), async (req, res) => {
     const image = req.file.filename;
     const sqlInsert = "INSERT INTO `bzh9f8szz4sa4nts1m00`.`test_picture` (picture) VALUES (?)";
     db.query(sqlInsert, image, async (err, res) => {
@@ -49,6 +50,12 @@ app.post('/upload', upload.single('image'), async (req, res) => {
         return response;
     });
     res.end();
+});
+
+app.get('/getimage', async (req, res) => {
+    const sqlGet = "SELECT * FROM `bzh9f8szz4sa4nts1m00`.`test_picture`";
+    const result = await db.query(sqlGet);
+    res.send(JSON.stringify(result));
 });
 
 app.post('/postnewrecipe', async (req, res) => {
