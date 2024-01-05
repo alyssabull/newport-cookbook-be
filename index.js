@@ -4,6 +4,8 @@ const cors = require("cors");
 const env = require("dotenv").config();
 const app = express();
 const axios = require("axios");
+const multer = require("multer");
+const path = require("path");
 
 const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
 const db = mysql.createPool(cleverCloudURL);
@@ -23,6 +25,23 @@ app.get('/getrecipes', async (req, res) => {
     const result = await db.query(sqlGet);
     res.send(JSON.stringify(result));
     res.end();
+});
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        db(null, "public/images")
+    },
+    filename: (req, file, cb) => {
+        db(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+    }
+});
+
+const upload = multer({
+    storage: storage
+});
+
+app.post('upload', upload.single('image'), (req, res) => {
+    res.send(req.file);
 });
 
 app.post('/postnewrecipe', async (req, res) => {
