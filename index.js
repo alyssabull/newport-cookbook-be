@@ -29,7 +29,7 @@ app.get('/getrecipes', async (req, res) => {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, "/public/images"))
+        cb(null, path.join(__dirname, "/home/bas/app_d7572c06-c252-4173-bc25-fc1c196a156f/public/images"))
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + file.originalname)
