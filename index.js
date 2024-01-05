@@ -40,13 +40,14 @@ const upload = multer({
     storage: storage
 });
 
-app.post('/upload', upload.single('image'), (req, res) => {
+app.post('/upload', upload.single('image'), async (req, res) => {
     const image = req.file.filename;
     const sqlInsert = "INSERT INTO bzh9f8szz4sa4nts1m00.test_picture (picture) VALUES (?)";
-    db.query(sqlInsert, [image], (err, res) => {
+    db.query(sqlInsert, [image], async (err, res) => {
         if(err) return res.json({Message: "Error"})
-        return res.json({Status: "Success"})
-    })
+        const response = await res.json({Status: "Success"});
+        return response;
+    });
     res.end();
 });
 
