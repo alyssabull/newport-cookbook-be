@@ -41,7 +41,12 @@ const upload = multer({
 });
 
 app.post('/upload', upload.single('image'), (req, res) => {
-    res.send(req.file);
+    const image = req.file.filename;
+    const sqlInsert = "UPDATE users SET picture=?";
+    db.query(sqlInsert, [image], (err, res) => {
+        if(err) return res.json({Message: "Error"})
+        return res.json({Status: "Success"})
+    })
     res.end();
 });
 
