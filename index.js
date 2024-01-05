@@ -42,6 +42,7 @@ const upload = multer({
 
 app.post('/upload', upload.single('image'), (req, res) => {
     res.send(req.file);
+    res.end();
 });
 
 app.post('/postnewrecipe', async (req, res) => {
