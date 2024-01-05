@@ -51,7 +51,7 @@ app.post('/uploadimage', upload.single('image'), async (req, res) => {
     res.end();
 });
 
-app.get('/getimage', async (req, res) => {
+app.get('/getimages', async (req, res) => {
     const sqlGet = "SELECT * FROM `bzh9f8szz4sa4nts1m00`.`test_picture`";
     const result = await db.query(sqlGet);
     res.send(JSON.stringify(result));
