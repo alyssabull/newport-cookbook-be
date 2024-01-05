@@ -22,7 +22,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/getrecipes', async (req, res) => {
-    const sqlGet = "SELECT * FROM bzh9f8szz4sa4nts1m00.all_recipes;";
+    const sqlGet = "SELECT * FROM `bzh9f8szz4sa4nts1m00`.`all_recipes`";
     const result = await db.query(sqlGet);
     res.send(JSON.stringify(result));
     res.end();
@@ -44,10 +44,9 @@ const upload = multer({
 app.post('/uploadimage', upload.single('image'), async (req, res) => {
     const image = req.file.filename;
     const sqlInsert = "INSERT INTO `bzh9f8szz4sa4nts1m00`.`test_picture` (picture) VALUES (?)";
-    db.query(sqlInsert, image, async (err, res) => {
-        if(err) return res.json({Message: "Error"})
-        const response = await res.json({Status: "Success"});
-        return response;
+    db.query(sqlInsert, image, async (err, result) => {
+        if(err) throw err;
+        await res.json(JSON.stringify(result));
     });
     res.end();
 });
