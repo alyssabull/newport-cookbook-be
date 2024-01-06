@@ -58,6 +58,13 @@ app.get('/getimages', async (req, res) => {
     res.send(JSON.stringify(result));
 });
 
+app.get("/getsingleimage", (req, res) => {
+    const filename = req.query.filename;
+    res.sendFile(filename, {
+      root: `./public/images`,
+    });
+ });
+
 app.post('/postnewrecipe', async (req, res) => {
     const sqlInsert = "INSERT INTO `bzh9f8szz4sa4nts1m00`.`all_recipes` (dateAdded, title, description, details, instructions, categories, isFavorite, notes, addedBy, picture) VALUES (?,?,?,?,?,?,?,?,?,?)";
     db.query(sqlInsert, [req.body.dateAdded, req.body.title, req.body.description, req.body.details, req.body.instructions, req.body.categories, req.body.isFavorite, req.body.notes, req.body.addedBy, finalCompression], async (err, result) => {
