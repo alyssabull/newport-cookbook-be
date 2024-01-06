@@ -7,21 +7,15 @@ const axios = require("axios");
 const multer = require("multer");
 const path = require("path");
 
-// const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
-// const db = mysql.createPool(cleverCloudURL);
-
-const db = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "password",
-    database: "testschema"
-})
+const cleverCloudURL = `mysql://${process.env.MYSQL_ADDON_USER}:${process.env.MYSQL_ADDON_PASSWORD}@${process.env.MYSQL_ADDON_HOST}:${process.env.MYSQL_ADDON_PORT}/${process.env.MYSQL_ADDON_DB}`;
+const db = mysql.createPool(cleverCloudURL);
 
 app.use(cors({
     origin: ["http://localhost:3000", "https://newport-cookbook.netlify.app", "https://newport-cookbook-be.cleverapps.io", "https://api.tinify.com/shrink"]
 }));
 app.use(express.json());
 app.use(express.static('uploads'));
+app.use('/images', express.static('images'))
 
 app.get('/', async (req, res) => {
     res.send("server is working");
@@ -37,7 +31,7 @@ app.get('/getrecipes', async (req, res) => {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(`./uploads`))
+        cb(null, path.join(`./public/images`))
     },
     filename: (req, file, cb) => {
         cb(null, Date.now() + file.originalname)
@@ -49,7 +43,6 @@ const upload = multer({
 });
 
 app.post('/uploadimage', upload.single('image'), async (req, res) => {
-    console.log(req.file)
     const image = req.file.filename;
     const sqlInsert = "INSERT INTO `bzh9f8szz4sa4nts1m00`.`test_picture` (picture) VALUES (?)";
     db.query(sqlInsert, image, async (err, result) => {
